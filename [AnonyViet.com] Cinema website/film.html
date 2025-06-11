@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" type="image/png" href="img/heart.png"/>
+  <title>HEY BAE !!</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      overflow: hidden;
+      animation: fadeIn 1s ease;
+    }
+    header {
+      background: #ff6b6b;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      position: relative;
+    }
+    header img {
+      width: 40px;
+      animation: beat 1s infinite;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    main {
+      padding: 1.5rem;
+    }
+    main h2 {
+      text-align: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #ff6b6b;
+    }
+    audio {
+      width: 100%;
+      margin-bottom: 1.5rem;
+      outline: none;
+    }
+    .ticket-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .ticket {
+      background: linear-gradient(135deg, #fddb92 0%, #d1fdff 100%);
+      border-radius: 8px;
+      padding: 1rem;
+      flex: 1;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: popIn 0.5s ease;
+    }
+    .ticket img {
+      width: 50px;
+      margin-bottom: 0.5rem;
+    }
+    .ticket span {
+      display: block;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #333;
+    }
+    #invite {
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    #agree {
+      background: #4ecdc4;
+      color: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      animation: slideUp 0.8s ease;
+    }
+    #agree time {
+      font-weight: 600;
+    }
+    #end {
+      display: block;
+      margin-top: 0.5rem;
+      font-style: normal;
+    }
+    #contact {
+      display: block;
+      text-align: center;
+      margin: 1.5rem auto;
+      padding: 0.75rem 2rem;
+      background: #ff6b6b;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    #contact:hover {
+      background: #e55a5a;
+    }
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="img/heart.png" alt="heart">
+      <p>Cuối tuần này... mình đi chơi nhé !!</p>
+    </header>
+    <main>
+      <h2>Anh đang có 2 vé xem phim</h2>
+      <audio autoplay controls loop>
+        <source src="mp3/Đừng Làm Trái Tim Anh Đau - Obito (remake).mp3" type="audio/mpeg">
+      </audio>
+      <div class="ticket-container">
+        <div>
+          <p>Vé thứ nhất có tên em</p>
+          <div class="ticket">
+            <img src="img/ticket.png" alt="ticket">
+            <span>Bé</span>
+          </div>
+        </div>
+        <div>
+          <p>Vé thứ hai có tên anh</p>
+          <div class="ticket">
+            <img src="img/ticket.png" alt="ticket">
+            <span>Cáo</span>
+          </div>
+        </div>
+      </div>
+      <p id="invite">Mình đi xem phim, rồi đi ăn những món em thích... chịu không ^^</p>
+      <div id="agree">
+        <p>Phim chiếu vào <time>19h30 - 20/06/2025</time></p>
+        <p>Anh sẽ đón em lúc <time>19h00</time></p>
+        <i id="end">💕 Love you</i>
+      </div>
+    </main>
+    <a href="https://www.facebook.com/ngoc.trang.468882" id="contact" target="_blank">Nhắn tin cho anh</a>
+  </div>
+</body>
+</html>

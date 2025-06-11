@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For Us</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* RESET */
+    * { margin:0; padding:0; box-sizing:border-box }
+    html, body { width:100%; height:100% }
+    body {
+      font-family:"Poppins",sans-serif;
+      display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+      overflow:hidden;
+    }
+    .card {
+      position: relative; z-index:10;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(8px);
+      padding:2rem 3rem; border-radius:1rem;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      transition: opacity .3s;
+      max-width:360px; width:100%; text-align:center;
+    }
+    .card.hide { opacity:0; pointer-events:none; }
+    .card h4 { font-size:2rem; color:#333; margin-bottom:1.5rem }
+    .buttons { display:flex; gap:1rem; justify-content:center }
+    .buttons button {
+      flex:1; padding:.75rem 0; font-size:1rem; font-weight:600;
+      border:none; border-radius:.5rem; cursor:pointer;
+      transition:transform .2s,box-shadow .2s; pointer-events:auto;
+    }
+    .buttons button:hover {
+      transform:scale(1.05);
+      box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    }
+    .noBtn { background:#ff6b6b; color:#fff }
+    .yesBtn { background:#4ecdc4; color:#fff }
+
+    .message {
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      flex-direction:column;
+      font-size:1.2rem; font-weight:600; color:#fff;
+      border-radius:1rem; padding:1rem;
+      text-shadow:0 2px 4px rgba(0,0,0,0.2);
+      opacity:0; transition:opacity .4s; z-index:11;
+      pointer-events:none;
+    }
+    .message.show { opacity:1 }
+    .message.no { background:rgba(255,107,107,0.8) }
+    .message.yes { background:rgba(78,205,196,0.8) }
+
+    .nested-options {
+      margin-top:1rem; display:none; gap:.5rem;
+      pointer-events:auto;
+    }
+    .message.no.show .nested-options {
+      display:flex; justify-content:center;
+    }
+    .nested-options button {
+      background:#fff; color:#333;
+      border:none; padding:.5rem 1rem; border-radius:.5rem;
+      font-weight:600; cursor:pointer; transition:background .2s;
+    }
+    .nested-options button:hover { background:#eee }
+
+    .gif-img {
+      position:fixed; bottom:20px; width:200px; height:auto;
+      opacity:0; transform:scale(0);
+      transition:opacity .4s,transform .4s; z-index:999;
+      pointer-events:none;
+    }
+    .gif-img.no { left:20px }
+    .gif-img.yes { right:20px }
+    .gif-img.show {
+      opacity:1; transform:scale(1);
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <h4>Bạn đi chơi với mình nha?</h4>
+    <div class="buttons">
+      <button class="noBtn" id="noBtn">Mơ đi</button>
+      <button class="yesBtn" id="yesBtn">Hmmm oke</button>
+    </div>
+  </div>
+
+  <div class="message no" id="noMsg">
+    😢 Ôi không, thử suy nghĩ lại nhé!
+    <div class="nested-options" id="noOptions">
+      <button id="refuseBtn">Mình từ chối</button>
+      <button id="agreeBtn">Được rồi, mình đồng ý</button>
+    </div>
+  </div>
+
+  <div class="message yes" id="yesMsg">
+    🎉 Tuyệt vời! Mình rất vui!
+  </div>
+
+  <img id="noGif" class="gif-img no"
+       src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmhzNjhzNGFmMjQ1dnZlb3BuNmd0eXdnYWUyMThrZ3YwYzI1M2xkZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/qYIrmqKf2h7jT5SZe0/giphy.gif"
+       alt="No GIF" />
+  <img id="yesGif" class="gif-img yes"
+       src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGd6am5vZmR1ZDA2YmJhb2JqcmJvOXgxdjhjNDNmZjFoM3o0YWRuaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/dEeEj8l9DcquXagfTY/giphy.gif"
+       alt="Yes GIF" />
+
+  <script>
+    const card      = document.getElementById("card");
+    const noBtn     = document.getElementById("noBtn");
+    const yesBtn    = document.getElementById("yesBtn");
+    const noMsg     = document.getElementById("noMsg");
+    const yesMsg    = document.getElementById("yesMsg");
+    const noGif     = document.getElementById("noGif");
+    const yesGif    = document.getElementById("yesGif");
+    const refuseBtn = document.getElementById("refuseBtn");
+    const agreeBtn  = document.getElementById("agreeBtn");
+    const noOptions = document.getElementById("noOptions");
+
+    noBtn.addEventListener("click", () => {
+      card.classList.add("hide");
+      noMsg.classList.add("show");
+      noGif.classList.add("show");
+    });
+
+    yesBtn.addEventListener("click", () => {
+      card.classList.add("hide");
+      yesMsg.classList.add("show");
+      yesGif.classList.add("show");
+      // Ẩn luôn noGif nếu vô tình đang hiển
+      noGif.classList.remove("show");
+    });
+
+    refuseBtn.addEventListener("click", () => {
+      noOptions.style.display = "none";
+      noMsg.innerText = "😞 Thôi hẹn dịp khác nhé!";
+      noGif.classList.add("show");
+    });
+
+    agreeBtn.addEventListener("click", () => {
+      // Ẩn message No và noGif
+      noMsg.classList.remove("show");
+      noOptions.style.display = "none";
+      noGif.classList.remove("show");
+      // Hiện message Yes và yesGif
+      yesMsg.classList.add("show");
+      yesGif.classList.add("show");
+    });
+  </script>
+</body>
+</html>
